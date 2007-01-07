@@ -132,7 +132,7 @@ DIST_EXTRAS = \@@\
  $(CHANGELOG) \@@\
  $(IMAKEFILE_OBJ)
  
-LOCAL_LIBRARIES	= -lXt -lX11 -lSM -lICE
+LOCAL_LIBRARIES	= -lXt -lSM -lICE -lXinerama -lX11
 
 ComplexProgramTarget($(NAME))
 
