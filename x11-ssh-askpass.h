@@ -157,6 +157,10 @@ typedef struct
 
    Display *dpy;
    Screen *screen;
+   long screen_width;
+   long screen_height;
+   long screen_xoffset;
+   long screen_yoffset;
    Window rootWindow;
    Pixel black;
    Pixel white;
