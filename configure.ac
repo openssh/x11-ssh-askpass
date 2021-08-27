@@ -1,0 +1,10 @@
+AC_INIT([ssh-askpass],[1.2.4.1],[jmknoble@pobox.com])
+AM_INIT_AUTOMAKE([foreign])
+AC_PROG_CC
+PKG_CHECK_MODULES([X11],[x11])
+PKG_CHECK_MODULES([XT],[xt])
+PKG_CHECK_MODULES([SM],[sm])
+PKG_CHECK_MODULES([ICE],[ice])
+AC_SUBST(NAME,[x11-ssh-askpass])
+AC_CONFIG_FILES([Makefile x11-ssh-askpass.man])
+AC_OUTPUT()

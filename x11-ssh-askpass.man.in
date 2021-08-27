@@ -3,7 +3,7 @@
 .\" Modified by Jim Knoble <jmknoble@pobox.com> for non-OpenBSD
 .\"   distribution
 .\"
-.Dd @DATE@
+.Dd September 17, 2001
 .Dt @NAME@ 1 
 .Os "Version @VERSION@"
 .Sh NAME
