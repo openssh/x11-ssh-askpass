@@ -1,3 +1,4 @@
+AUTOMAKE_OPTIONS = subdir-objects
 libexec_PROGRAMS = x11-ssh-askpass
 x11_ssh_askpass_SOURCES = drawing.c dynlist.c resources.c x11-ssh-askpass.c
 x11_ssh_askpass_SOURCES += drawing.h dynlist.h resources.h x11-ssh-askpass.h

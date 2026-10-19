@@ -1,11 +1,13 @@
 AC_INIT([x11-ssh-askpass],[1.2.4.1],[x11-ssh-askpass@dtucker.net])
 AM_INIT_AUTOMAKE([foreign])
+AC_CONFIG_HEADERS([config.h])
 AC_PROG_CC
 PKG_CHECK_MODULES([X11],[x11])
 PKG_CHECK_MODULES([XT],[xt])
 PKG_CHECK_MODULES([SM],[sm])
 PKG_CHECK_MODULES([ICE],[ice])
 PKG_CHECK_MODULES([XINERAMA],[xinerama])
+AC_CHECK_FUNCS([explicit_bzero explicit_memset memset_s])
 AC_SUBST(NAME,[x11-ssh-askpass])
 AC_CONFIG_FILES([Makefile x11-ssh-askpass.man])
 AC_OUTPUT()
