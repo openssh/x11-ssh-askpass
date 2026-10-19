@@ -49,30 +49,29 @@ The following keystrokes work as expected:
 | Installing |
 +------------+
 
-Beginning with version 1.2.1, x11-ssh-askpass provides a 'configure'
-script to set locations to install files, etc.  It's relatively
-straightforward; use './configure --help' for a full list of options.
+Beginning after version 1.2.4.1, x11-ssh-askpass uses Automake and Autoconf
+to generate a configure script that can set locations to install files, etc.
+
+It's relatively straightforward; run autogen.sh to create configure if it
+does not exist, then use './configure --help' for a full list of options.
 Most folks will probably want the default settings:
 
   ./configure
 
-After configuring, use xmkmf and make to build and install
+After configuring, use make to build and install
 x11-ssh-askpass, as follows:
 
-  xmkmf
-  make includes
   make
   make install
   make install.man
 
 x11-ssh-askpass installs by default in /usr/local/libexec/; its manual
-page installs in /usr/local/man/man1/. To install them it somewhere
+page installs in /usr/local/man/man1/. To install them somewhere
 else (for example, x11-ssh-askpass in /usr/libexec/openssh/ and the
 manual page in /usr/X11R6/man/man1/), use:
 
   ./configure --libexecdir=/usr/libexec/openssh --mandir=/usr/X11R6/man/
-  xmkmf
-  make includes
+  make
   [etc.]
 
 Several different app-defaults files accompany x11-ssh-askpass:
