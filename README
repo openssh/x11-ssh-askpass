@@ -63,10 +63,9 @@ x11-ssh-askpass, as follows:
 
   make
   make install
-  make install.man
 
 x11-ssh-askpass installs by default in /usr/local/libexec/; its manual
-page installs in /usr/local/man/man1/. To install them somewhere
+page installs in /usr/local/share/man/man1/. To install them somewhere
 else (for example, x11-ssh-askpass in /usr/libexec/openssh/ and the
 manual page in /usr/X11R6/man/man1/), use:
 
