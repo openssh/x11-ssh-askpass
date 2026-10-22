@@ -34,6 +34,8 @@
  * provisions as those of the xscreensaver code.
  */
 
+#include "includes.h"
+
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -55,7 +57,9 @@
 #include <X11/Intrinsic.h>
 #include <X11/Shell.h>
 #include <X11/Xos.h>
+#ifdef USE_XINERAMA
 #include <X11/extensions/Xinerama.h>
+#endif
 #include "dynlist.h"
 #include "drawing.h"
 #include "resources.h"
@@ -1457,8 +1461,10 @@ int main(int argc, char **argv)
 {
    AppInfo app;
    XEvent event;
+#ifdef USE_XINERAMA
    XineramaScreenInfo *screens;
    int nscreens;
+#endif
 
    memset(&app, 0, sizeof(app));
    
@@ -1517,6 +1523,7 @@ int main(int argc, char **argv)
    app.yResolution =
       app.screen_height * 1000 / HeightMMOfScreen(app.screen);
 
+#ifdef USE_XINERAMA
    if (XineramaIsActive(app.dpy) &&
       (screens = XineramaQueryScreens(app.dpy, &nscreens)) != NULL &&
       nscreens) {
@@ -1526,6 +1533,7 @@ int main(int argc, char **argv)
       app.screen_yoffset = screens[0].y_org;
       XFree(screens);
    }
+#endif
 
    createDialog(&app);
    createGCs(&app);

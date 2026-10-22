@@ -6,7 +6,24 @@ PKG_CHECK_MODULES([X11],[x11])
 PKG_CHECK_MODULES([XT],[xt])
 PKG_CHECK_MODULES([SM],[sm])
 PKG_CHECK_MODULES([ICE],[ice])
-PKG_CHECK_MODULES([XINERAMA],[xinerama])
+
+AC_ARG_WITH([xinerama],
+    [  --with-xinerama=yes|no  Enable/disable use of Xinerama],
+    [
+	with_xinerama="$withval"
+    ]
+)
+
+if test "x$with_xinerama" != "xno"; then
+	PKG_CHECK_MODULES([XINERAMA],[xinerama],
+	    [AC_DEFINE([USE_XINERAMA], [1], [Use Xinerama])],
+	    [if test "x$with_xinerama" = "xyes"; then
+		AC_MSG_ERROR([Xinerama requested but not available])
+	     fi
+	    ]
+	)
+fi
+
 AC_CHECK_FUNCS([explicit_bzero explicit_memset memset_s])
 AC_SUBST(NAME,[x11-ssh-askpass])
 
