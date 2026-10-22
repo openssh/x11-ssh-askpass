@@ -45,6 +45,8 @@ int append_to_list(char ***list_ptr, int *list_len, int *i, char *item)
        }
        if (NULL == tmp_ptr)
 	{
+           free(*list_ptr);
+           *list_ptr = NULL;
 	   return(APPEND_FAILURE);
 	}
        *list_ptr = tmp_ptr;
@@ -69,6 +71,8 @@ int append_to_buf(char **buf, int *buflen, int *i, int c)
        }
        if (NULL == tmp_buf)
 	{
+           free(*buf);
+           *buf = NULL;
 	   return(APPEND_FAILURE);
 	}
        *buf = tmp_buf;
@@ -80,4 +84,3 @@ int append_to_buf(char **buf, int *buflen, int *i, int c)
    (*i)++;
    return(APPEND_SUCCESS);
 }
-
