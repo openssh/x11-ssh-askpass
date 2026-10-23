@@ -1,0 +1,48 @@
+name: CI
+permissions: read-all
+on:
+  push:
+    paths: [ '**.c', '**.h', '**.m4', '**.ac', '**.in', '**.sh', '**.yaml']
+  pull_request:
+    paths: [ '**.c', '**.h', '**.m4', '**.ac', '**.in', '**.sh', '**.yaml']
+
+jobs:
+  ci:
+    name: "${{ matrix.target }} ${{ matrix.config}}"
+    strategy:
+      fail-fast: false
+      matrix:
+        target:
+          - ubuntu-22.04
+          - ubuntu-24.04
+          - ubuntu-26.04
+          - ubuntu-latest
+        config:
+          - ""
+          - --with-xinerama
+          - --without-xinerama
+    runs-on: ${{ matrix.target }}
+    steps:
+    - name: install deps
+      run: |
+        case `uname` in
+        Linux)
+          sudo apt update && \
+          sudo apt install -y libxt-dev libxinerama-dev autoconf automake
+          ;;
+        Darwin)
+          brew install autoconf automake
+          ;;
+        esac
+    - name: checkout git repo
+      uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # main
+    - name: rebuild configure
+      run: sh autogen.sh
+    - name: configure
+      run: ./configure ${{ matrix.config }}
+    - name: make
+      run: make
+    - name: install
+      run: sudo make install
+    - name: distcheck
+      run: make distcheck
